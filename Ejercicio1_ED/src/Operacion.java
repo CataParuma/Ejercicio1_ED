@@ -3,7 +3,7 @@ import java.util.Scanner;
 public class Operacion {
 
 	Scanner sc = new Scanner(System.in);
-	private Alumno[] alumno = new Alumno[10];
+	private Alumno[] alumno = new Alumno[6];
 
 	public void crearAlumno() {
 
@@ -22,16 +22,13 @@ public class Operacion {
 		// alumno[i] = new Alumno(nombre, programaAcademico, fechaNacimiento);
 		// }
 
-		alumno[0] = new Alumno("Cosi", "A", "09/07/2000");
-		alumno[1] = new Alumno("Chema", "B", "07/11/1995");
-		alumno[2] = new Alumno("Wen", "A", "09/07/2000");
-		alumno[3] = new Alumno("Sammy", "B", "07/11/1995");
-		alumno[4] = new Alumno("Ametos", "A", "09/07/2000");
-		alumno[5] = new Alumno("Haru", "B", "07/11/1995");
-		alumno[6] = new Alumno("Charlie", "C", "03/01/2008");
-		alumno[7] = new Alumno("Jose", "C", "03/01/2008");
-		alumno[8] = new Alumno("Caro", "c", "03/01/2008");
-		alumno[9] = new Alumno("Coco", "D", "06/01/2008");
+		alumno[0] = new Alumno("Alejandro", "Sistemas", "10/09/2000");
+		alumno[1] = new Alumno("Samuel", "Biologia", "28/01/2000");
+		alumno[2] = new Alumno("Catalina", "Sistemas", "11/07/2000");
+		alumno[3] = new Alumno("Oscar", "Biologia", "10/09/2000");
+		alumno[4] = new Alumno("Angela", "Biologia", "28/01/2000");
+		alumno[5] = new Alumno("Sebastian", "Sistemas", "11/07/2000");
+
 	}
 
 	public void mostrarAlumno() {
@@ -47,9 +44,9 @@ public class Operacion {
 
 	public void mostrarAlumnoIgualPrograma() {
 
-		boolean[] marcador = new boolean[alumno.length]; //Marca los alumnos ya comparados
-		String programa; //Guarda el programa a comparar
-		int ultimo; //
+		boolean[] marcador = new boolean[alumno.length];
+		String programa; 
+		int posicion; 
 
 		System.out.println("\n**Alumnos con programas academicos iguales**\n");
 
@@ -57,7 +54,7 @@ public class Operacion {
 
 			if (marcador[i] == false) { //Verifica que el alumno en esa posicion no ha sido comparado
 
-				ultimo = i;
+				posicion = i;
 				programa = alumno[i].getProgramaAcademico(); //Guarda el programa que se va a comparar
 				marcador[i] = true; //Confirma que ese alumno ya fue comparado
 
@@ -65,18 +62,19 @@ public class Operacion {
 
 					if (programa.equalsIgnoreCase(alumno[j].getProgramaAcademico())) { //Compara el programa para buscar iguales
 
-						if (ultimo == i)
+						if (posicion == i)
 							System.out.println("**" + programa + "**\n"); //Escribe el nombre del programa comparado
 
-						System.out.println(alumno[ultimo].getNombre() + "\n"); //Escribe el nombre de los alumnos iguales
+						System.out.println(alumno[posicion].getNombre() + "\n"); //Escribe el nombre de los alumnos iguales
 						marcador[j] = true; //Confirma que ese estudiante ya fue comparado con este programa
 
-						ultimo = j;
+						posicion = j;
 					}
 				}
 				
-				if (ultimo != i)
-					System.out.println(alumno[ultimo].getNombre() + "\n");
+				//Este if permite solo imprimir los que tengan dos o mas repetidos
+				if (posicion != i)
+					System.out.println(alumno[posicion].getNombre() + "\n");
 			}
 		}
 	}
@@ -85,7 +83,7 @@ public class Operacion {
 
 		boolean[] marcador = new boolean[alumno.length];
 		String fecha;
-		int ultimo;
+		int posicion;
 
 		System.out.println("\n**Alumnos con fechas de nacimiento iguales**\n");
 
@@ -93,7 +91,7 @@ public class Operacion {
 
 			if (marcador[i] == false) {
 
-				ultimo = i;
+				posicion = i;
 				fecha = alumno[i].getFechaNacimiento();
 				marcador[i] = true;
 
@@ -101,17 +99,17 @@ public class Operacion {
 
 					if (fecha.equalsIgnoreCase(alumno[j].getFechaNacimiento())) {
 
-						if (ultimo == i)
+						if (posicion == i)
 							System.out.println("**" + fecha + "**\n");
 
-						System.out.println(alumno[ultimo].getNombre() + "\n");
+						System.out.println(alumno[posicion].getNombre() + "\n");
 						marcador[j] = true;
-						ultimo = j;
+						posicion = j;
 					}
 				}
 
-				if (ultimo != i)
-					System.out.println(alumno[ultimo].getNombre() + "\n");
+				if (posicion != i)
+					System.out.println(alumno[posicion].getNombre() + "\n");
 			}
 		}
 	}
